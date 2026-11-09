@@ -22,4 +22,32 @@ class Produit(models.Model):
     def __str__(self):
         return self.nom
 
+
+    def affiche_client(self):
+      # affichage du profil
+
+      return f"{self.nom} - {self.prenom} - {self.tel} - {self.email} - {self.tel}"
+
+    def modifier_client(self, nouveau_tel, nouveau_add,  ):
+      self.tel = nouveau_tel
+      self.adresse = nouveau_add
+      self.save()
+    def supprimer_client(self):
+        # supprimer ce client de la base
+        self.delete()
+
+    def __str__(self):
+      return self.email
+
+
+    def est_en_rupture(self):
+       
+
+
+class Categorie(models.Model):
+    nom = models.CharField(max_length = 100)
+    description = models.FloatField( max_length = 100)
+
+
+    
 # Create your models here.

@@ -1,6 +1,6 @@
 from django.db import models
 from comptes.models import Client
-from boutique.models import Produit
+from catalogue.models import Produit
 
 class Commande(models.Model):
     #statuts possible de la commande
@@ -53,6 +53,24 @@ class Commande(models.Model):
 
     def __str__(self):
         return f"Commande {self.id}"
+
+
+
+class ligneCommande(models.Model):
+    quantite = models.IntegerField(default = 1)
+    prix_initaire = models.IntegerField(default = 1)
+    commande = models.CharField(max_length = 100)  # chaque facture apartient a un comande
+    produit = models.IntegerField(default = 1)
+
+
+
+
+
+class Facture(models.Model):
+    date_facture = models.DateTimeField(default = 1)
+    montant_total = models.IntegerField(default = 1)
+    commande = models.CharField(max_length = 100)  # chaque facture apartient a un comande
+    
     
 
 # Create your models here.

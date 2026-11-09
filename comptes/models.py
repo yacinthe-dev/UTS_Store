@@ -18,7 +18,7 @@ class Client(models.Model):
     def affiche_profil(self):
       # affichage du profil
 
-      return f"{self.nom} - {self.prenom} - {self.tel} - {self.email} - {self.tel}"
+      return f"{self.nom} - {self.prenom} - {self.tel} - {self.email} - {self.adresse}"
 
     def modifier_profil(self, nouveau_tel, nouveau_add, nouveau_nom, nouveau_prenom, ):
       self.tel = nouveau_tel
