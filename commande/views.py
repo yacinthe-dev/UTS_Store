@@ -7,6 +7,9 @@ from .models import Commande
 from catalogue.models import Produit
 from comptes.models import Client
 
+def commande(request): 
+    return render(request, 'posts/commande.html')
+
 # ---------- CLIENT ----------
 
 @login_required

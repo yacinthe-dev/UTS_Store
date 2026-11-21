@@ -1,0 +1,24 @@
+{% extends "posts/base.html" %}
+{% block contenu %}
+<div class="container mt-4">
+  <h1 class="mb-3">Promotions</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for promo in promotions %}
+    <div class="col">
+      <div class="card h-100 border-warning">
+        <div class="card-body">
+          <h5 class="card-title">{{ promo.nom }}</h5>
+          <p class="card-text">{{ promo.pourcentage }} % de réduction</p>
+          <span class="badge bg-warning text-dark">
+            Jusqu'au {{ promo.date_fin|date:"d/m/Y" }}
+          </span>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>Aucune promotion en cours.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

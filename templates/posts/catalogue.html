@@ -1,0 +1,37 @@
+
+{% extends "posts/base.html" %}
+{% block contenu %}
+<div class="container mt-4">
+  <h1 class="mb-3">Catalogue</h1>
+
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-md-9">
+      <input type="text" name="q" value="{{ q }}" class="form-control"
+             placeholder="Rechercher un produit...">
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+    </div>
+  </form>
+
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for p in produits %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ p.nom }}</h5>
+          <p class="card-text">{{ p.prix }} FCFA</p>
+          {% if p.stock <= 5 %}
+            <span class="badge bg-danger">Stock faible : {{ p.stock }}</span>
+          {% else %}
+            <span class="badge bg-success">En stock : {{ p.stock }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>Aucun produit trouvé.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

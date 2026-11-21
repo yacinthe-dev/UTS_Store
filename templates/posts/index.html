@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Accueil - UTS'Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP JAVASCRIPT  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+<!-- BARRE DE NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+   <a class="navbar-brand" href="/">UTS'Store</a>
+    <div class="navbar-nav">
+      <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
+      <a class="nav-link" href="{% url 'compte' %}">Compte</a>
+      <a class="nav-link" href="{% url 'catalogue' %}">Catalogue</a>
+      <a class="nav-link" href="{% url 'promotions' %}">Promotion</a>
+      <a class="nav-link" href="{% url 'commande' %}">Commande</a>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+    <h2>Tableau de bord</h2>
+
+    <div class="row">
+        <!-- Carte 1 -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>{{ chiffre_total }} FCFA</h5>
+                <p>Chiffre d'affaires total</p>
+            </div>
+        </div>
+
+        <!-- Carte 2 -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>{{ total_vendu }}</h5>
+                <p>Total produits vendus</p>
+            </div>
+        </div>
+
+        <!-- Carte 3 -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>{{ top_5|length }}</h5>
+                <p>Produits populaires</p>
+            </div>
+        </div>
+        <!-- Carte 4 -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>{% if dernier_resume %}{{ dernier_resume.nombre_commandes }}{% else %}0{% endif %}</h5>
+                <p>Nombre de commandes</p>
+            </div>
+        </div>
+
+        <!-- Carte 5 -->
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>{% if dernier_resume %}{{ dernier_resume.nouveau_clients }}{% else %}0{% endif %}</h5>
+                <p>Nouveaux clients</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Top 5 des produits les plus vendus</h3>
+    <ul class="list-group">
+    {% for p in top_5 %}
+        <li class="list-group-item">{{ p.produit.nom }} - {{ p.total_vendu }} vendus - {{ p.chiffre_affaire_genere }} FCFA</li>
+    {% empty %}
+        <li class="list-group-item">Aucun produit vendu pour le moment</li>
+    {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
